@@ -27,29 +27,29 @@ function render_prtg_screenshot
     fi
 }
 
-cd /opt/puppeteer
+cd /opt/stvproxy
 
 set +H
 
 # Kibana STV Summary
-render_kibana_screenshot dashboard1 9d13ef97dbc3b8478000ce1af192037e &
+render_kibana_screenshot dashboard1 9d13ef97dbc3b8478000ce1af192037e 
 
 # Kibana STV Dash #1
-render_kibana_screenshot dashboard2 36c31309c645debd544f6c33589831ce &
+render_kibana_screenshot dashboard2 36c31309c645debd544f6c33589831ce 
 
 # Kibana STV Dash #2
-render_kibana_screenshot dashboard3 72f2a35f9bb4cb4e25136128acb030b6 &
+render_kibana_screenshot dashboard3 72f2a35f9bb4cb4e25136128acb030b6 
 
 # Kibana STV Dash #3
-render_kibana_screenshot dashboard4 2605490b96415149d994a8f90d744016 &
+render_kibana_screenshot dashboard4 2605490b96415149d994a8f90d744016 
 
 
 # PRTG Summary
-render_prtg_screenshot dashboard5 9619 48DD234E-DBBC-4B12-90C2-4F4572935A52 &
+render_prtg_screenshot dashboard5 9619 48DD234E-DBBC-4B12-90C2-4F4572935A52 
 
 # PRTG Web Load
-render_prtg_screenshot dashboard6 9620 EF4EE673-F3C8-4E3D-A487-84D68880DDA4 &
+render_prtg_screenshot dashboard6 9620 EF4EE673-F3C8-4E3D-A487-84D68880DDA4
 
 # PRTG Web Apache Status
-render_prtg_screenshot dashboard7 9621 6BDDB5FD-7D0A-4802-BF95-6AB65F9678B5 &
+render_prtg_screenshot dashboard7 9621 6BDDB5FD-7D0A-4802-BF95-6AB65F9678B5 
 
