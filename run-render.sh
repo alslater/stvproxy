@@ -10,7 +10,7 @@ function render_kibana_screenshot
 
 	node getkibana.js ${KIBANA}/goto/${id}?embed=true ${filename} >> run-render.log 2>&1
     if [ ! -f ${filename}.htm ]; then
-       sed "s/__FILENAME__/${1}/" snapshot.html.template > ${filename}.htm
+       sed "s/__FILENAME__/${1}/" snapshot.template.htm > ${filename}.htm
     fi
 }
 
@@ -23,7 +23,7 @@ function render_prtg_screenshot
 
 	node getscreenshot.js "${PRTGURL}id=${id}&mapid=${mapid}" ${filename} >> run-render.log 2>&1
     if [ ! -f ${filename}.htm ]; then
-       sed "s/__FILENAME__/${1}/" snapshot.html.template > ${filename}.htm
+       sed "s/__FILENAME__/${1}/" snapshot.template. > ${filename}.htm
     fi
 }
 
