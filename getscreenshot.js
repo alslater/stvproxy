@@ -25,19 +25,19 @@ const puppeteer = require('puppeteer');
 	
   // set viewport
   await page.setViewport({width: 1920, height: 1080});
+
+  const ts = Date.now();
+  let result = {
+	  timestamp: ts,
+	  error: false,
+	  errorstr: false
+  }
   
   try {
 	  await page.goto(url, {
 		// wait until page is loaded
 		waitUntil: 'networkidle0'
 	  });
-
-	  const ts = Date.now();
-	  let result = {
-		  timestamp: ts,
-		  error: false,
-		  errorstr: false
-	  }
 
 	  // take screenshot of the full page (by default it's only of the viewport)
 	  await page.screenshot({path: output, fullPage: true});
