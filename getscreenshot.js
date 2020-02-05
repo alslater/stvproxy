@@ -22,29 +22,29 @@ const puppeteer = require('puppeteer');
 	  args: ['--proxy-server=192.168.10.17:3128', '--no-sandbox']
   });
   const page = await browser.newPage();
-
+	
   // set viewport
   await page.setViewport({width: 1920, height: 1080});
   
-  await page.goto(url, {
-    // wait until page is loaded
-    waitUntil: 'networkidle0'
-  });
-
-  const ts = Date.now();
-  let result = {
-	  timestamp: ts,
-	  error: false,
-	  errorstr: false
-  }
-
   try {
+	  await page.goto(url, {
+		// wait until page is loaded
+		waitUntil: 'networkidle0'
+	  });
+
+	  const ts = Date.now();
+	  let result = {
+		  timestamp: ts,
+		  error: false,
+		  errorstr: false
+	  }
+
 	  // take screenshot of the full page (by default it's only of the viewport)
 	  await page.screenshot({path: output, fullPage: true});
   } catch(e) {
     result.error = true;
-    result.errorstr=e.toString()
-
+    result.errorstr=e.toString();
+	console.error(e);
   }
   fs.writeFile(resultoutput, JSON.stringify(result), function(err) {});
   await browser.close();
