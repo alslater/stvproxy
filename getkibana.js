@@ -68,6 +68,7 @@ const puppeteer = require('puppeteer');
   } catch(e) {
     result.error = true;
     result.errorstr=e.toString()
+    console.error(e);
   }
   fs.writeFile(resultoutput, JSON.stringify(result), function(err) {});
   await browser.close();
