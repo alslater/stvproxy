@@ -38,7 +38,7 @@ render_kibana_screenshot dashboard1 9d13ef97dbc3b8478000ce1af192037e
 render_kibana_screenshot dashboard2 36c31309c645debd544f6c33589831ce 
 
 # Kibana STV Dash #2
-render_kibana_screenshot dashboard3 72f2a35f9bb4cb4e25136128acb030b6 
+render_kibana_screenshot dashboard3 73252eb99409abb2554528b8d980ed6d
 
 # Kibana STV Dash #3
 render_kibana_screenshot dashboard4 2605490b96415149d994a8f90d744016 
