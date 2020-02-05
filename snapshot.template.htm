@@ -69,21 +69,19 @@ img {
 
 	<script>
 	    document.getElementById("timenow").innerHTML = new Date();
-        <script type="text/javascript">
-            document.getElementById("timenow").innerHTML = new Date();
-            $.getJSON("dashboard1.png.json", function(res) {
-                ts = new Date(res.timestamp);
-                element = document.getElementById("timestamp");
-                if (!res.error) {
-                    element.innerHTML = ts;
-                    element.style.color="white"
-                } else {
-                    element.innerHTML = ts + " : " + res.errorstr;
-                    element.style.color="red"
-                }
-                if ((Date.now() - res.timestamp) > (10 * 60 * 1000)) {
-                    element.style.color="orange";
-                }
-            })
-        </script>
+        $.getJSON("dashboard1.png.json", function(res) {
+            ts = new Date(res.timestamp);
+            element = document.getElementById("timestamp");
+            if (!res.error) {
+                element.innerHTML = ts;
+                element.style.color="white"
+            } else {
+                element.innerHTML = ts + " : " + res.errorstr;
+                element.style.color="red"
+            }
+            if ((Date.now() - res.timestamp) > (10 * 60 * 1000)) {
+                element.style.color="orange";
+            }
+        })
+    </script>
 </body>
