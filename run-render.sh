@@ -31,6 +31,8 @@ cd /opt/stvproxy
 
 set +H
 
+### TECHNICAL STV1 ###
+
 # Kibana STV Summary
 render_kibana_screenshot dashboard1 9d13ef97dbc3b8478000ce1af192037e 
 
@@ -53,3 +55,6 @@ render_prtg_screenshot dashboard6 9620 EF4EE673-F3C8-4E3D-A487-84D68880DDA4
 # PRTG Web Apache Status
 render_prtg_screenshot dashboard7 9621 6BDDB5FD-7D0A-4802-BF95-6AB65F9678B5 
 
+### SUPPORT STV4 ###
+
+render_kibana_screenshot stv4_dashboard1 75cf7fc3e0b8c8709073b7161ba97af5
