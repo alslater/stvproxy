@@ -55,6 +55,15 @@ render_prtg_screenshot dashboard6 9620 EF4EE673-F3C8-4E3D-A487-84D68880DDA4
 # PRTG Web Apache Status
 render_prtg_screenshot dashboard7 9621 6BDDB5FD-7D0A-4802-BF95-6AB65F9678B5 
 
-### SUPPORT STV4 ###
+### SUPPORT STV3 ###
+render_kibana_screenshot stv3_dashboard1 269268f3fa6693e9d92132313fd185a8
 
-render_kibana_screenshot stv4_dashboard1 75cf7fc3e0b8c8709073b7161ba97af5
+### SUPPORT STV4 ###
+render_kibana_screenshot stv4_dashboard1 901323f80152d47cb3ebebd7b945b49c
+
+render_prtg_screenshot stv4_google_maps 7719 F0E01F49-11A3-4B0B-8F1D-30ABB67BF0EA
+
+### SUPPORT STV5 ###
+render_kibana_screenshot stv5_dashboard1 a93ecb88000b14e5ec0a61f4e26cd2e1
+
+
