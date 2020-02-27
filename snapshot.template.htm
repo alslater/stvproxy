@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<script src="jquery-3.4.1.min.js"></script>
-	
+
 	<style>
 	* {
 	  box-sizing: border-box;
@@ -25,12 +25,12 @@
 
 	.date1 {
 	  width: 50%;
-	  text-align: left;  
+	  text-align: left;
 	}
 
 	.date2 {
 	  width: 50%;
-	  text-align: right;  
+	  text-align: right;
 	}
 
 	/* Container for flexboxes */
@@ -73,7 +73,7 @@
 
 		<script>
 			document.getElementById("timenow").innerHTML = new Date();
-		    $.getJSON("dashboard1.png.json", function(res) {
+		    $.getJSON("__FILENAME__.png.json", function(res) {
 		        ts = new Date(res.timestamp);
 		        element = document.getElementById("timestamp");
 		        if (!res.error) {
