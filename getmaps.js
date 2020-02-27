@@ -49,7 +49,7 @@ const puppeteer = require('puppeteer');
 
   } catch(e) {
     fs.writeFile(filename, '<Result>10</Result>\n', function(err) {
-			console.error(Date.now().toString() + ' : ' + process.argv[2] + ' : exception : ' + e.toString())
+			console.error(Date().toString() + ' : ' + process.argv[2] + ' : exception : ' + e.toString())
 		});
   }
   await browser.close();
