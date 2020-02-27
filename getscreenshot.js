@@ -2,7 +2,7 @@ process = require('process')
 fs = require('fs')
 
 if (process.argv.length < 3 || process.argv.length > 5) {
-	    console.log('Usage: getkibana.js  url filename');
+	    console.log('Usage: getscreenshot.js  url filename');
 	    process.exit(1);
 }
 
@@ -22,7 +22,7 @@ const puppeteer = require('puppeteer');
 	  args: ['--proxy-server=192.168.10.17:3128', '--no-sandbox']
   });
   const page = await browser.newPage();
-	
+
   // set viewport
   await page.setViewport({width: 1920, height: 1080});
 
@@ -32,11 +32,11 @@ const puppeteer = require('puppeteer');
 	  error: false,
 	  errorstr: false
   }
-  
+
   try {
 	  await page.goto(url, {
-		// wait until page is loaded
-		waitUntil: 'networkidle0'
+		  // wait until page is loaded
+		  waitUntil: 'networkidle0'
 	  });
 
 	  // take screenshot of the full page (by default it's only of the viewport)
@@ -44,8 +44,8 @@ const puppeteer = require('puppeteer');
   } catch(e) {
     result.error = true;
     result.errorstr=e.toString();
-	console.error(e);
+    console.error(ts.toString() + process.argv[2] + " : exception : " + e.toString());
   }
-  fs.writeFile(resultoutput, JSON.stringify(result), function(err) {});
+  fs.writeFile(Date.now().toString(), resultoutput, JSON.stringify(result), function(err) {});
   await browser.close();
 })();

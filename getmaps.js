@@ -19,7 +19,7 @@ const puppeteer = require('puppeteer');
 	  headless: true,
 	  userDataDir: './cache',
 	  args: [
-		  '--proxy-server=192.168.10.17:3128', 
+		  '--proxy-server=192.168.10.17:3128',
 		  '--proxy-bypass-list=10.130.7.13',
 		  '--no-sandbox'
 	  ]
@@ -29,7 +29,7 @@ const puppeteer = require('puppeteer');
 
   // set viewport
   await page.setViewport({width: 1920, height: 1080});
-  
+
   try {
     await page.goto(url, {
       // wait until page is loaded
@@ -42,11 +42,15 @@ const puppeteer = require('puppeteer');
        fs.writeFile(filename ,'<Result>0</Result>\n', function(err) {});
     }
     else {
-       fs.writeFile(filename,'<Result>10</Result>\n', function(err) { console.error(err); });
+       fs.writeFile(filename,'<Result>10</Result>\n', function(err) {
+				 console.error(err);
+			 });
     }
 
   } catch(e) {
-    fs.writeFile(filename, '<Result>10</Result>\n', function(err) { console.error('exception: ' + e)} ); 
+    fs.writeFile(filename, '<Result>10</Result>\n', function(err) {
+			console.error(process.argv[2] + " : exception : " + e.toString())
+		});
   }
   await browser.close();
 })();

@@ -68,7 +68,7 @@ const puppeteer = require('puppeteer');
   } catch(e) {
     result.error = true;
     result.errorstr=e.toString()
-    console.error(e);
+		console.error(ts.toString() + process.argv[2] + " : exception : " + e.toString());
   }
   fs.writeFile(resultoutput, JSON.stringify(result), function(err) {});
   await browser.close();
