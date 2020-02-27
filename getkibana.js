@@ -31,7 +31,7 @@ const puppeteer = require('puppeteer');
   let result = {
 	  timestamp: ts,
 	  error: false,
-	  errorstr: false
+	  errorstr: ''
   }
 
   try {
