@@ -19,7 +19,7 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({
 	  ignoreHTTPSErrors: true,
 	  userDataDir: './cache',
-	  args: ['--proxy-server=hq.proxy.aws.scluk.com:3128', '--no-sandbox']
+	  args: ['--proxy-server=proxy.hq.aws.scluk.com:3128', '--no-sandbox']
   });
   const page = await browser.newPage();
 
