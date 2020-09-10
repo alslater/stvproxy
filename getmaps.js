@@ -19,7 +19,7 @@ const puppeteer = require('puppeteer');
 	  headless: true,
 	  userDataDir: './cache',
 	  args: [
-		  '--proxy-server=192.168.10.17:3128',
+		  '--proxy-server=proxy.hq.aws.scluk.com:3128',
 		  '--proxy-bypass-list=10.130.7.13',
 		  '--no-sandbox'
 	  ]
