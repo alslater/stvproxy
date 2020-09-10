@@ -40,7 +40,7 @@ const puppeteer = require('puppeteer');
       waitUntil: 'networkidle0'
     });
 
-    const selector = 'dashboard-viewport-provider';
+    const selector = '.application';
     const rect = await page.evaluate(selector => {
  	             const element = document.querySelector(selector);
 	             if (!element)
