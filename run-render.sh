@@ -8,7 +8,7 @@ function render_kibana_screenshot
 	filename=/var/www/html/${1}
 	id=${2}
 
-	node getkibana.js ${KIBANA}/goto/${id}?embed=true ${filename} >> run-render.log 2>&1
+	node scripts/getkibana.js ${KIBANA}/goto/${id}?embed=true ${filename} >> run-render.log 2>&1
   if [ snapshot.template.htm -nt ${filename}.htm ]; then
     sed "s/__FILENAME__/${1}/" snapshot.template.htm > ${filename}.htm
   fi
@@ -21,7 +21,7 @@ function render_prtg_screenshot
 	id=${2}
 	mapid=${3}
 
-	node getscreenshot.js "${PRTGURL}id=${id}&mapid=${mapid}" ${filename} >> run-render.log 2>&1
+	node scripts/getscreenshot.js "${PRTGURL}id=${id}&mapid=${mapid}" ${filename} >> run-render.log 2>&1
   if [ snapshot.template.htm -nt ${filename} ]; then
     sed "s/__FILENAME__/${1}/" snapshot.template.htm > ${filename}.htm
   fi
