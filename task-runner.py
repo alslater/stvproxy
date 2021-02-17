@@ -142,7 +142,7 @@ def main():
     logconfig = {
         'format': logformat,
         'level': logging.INFO,
-        'filename': 'run-render.log'
+        'filename': 'task-runner.log'
     }
 
     logging.basicConfig(**logconfig)
