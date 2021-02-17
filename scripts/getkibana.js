@@ -45,7 +45,7 @@ const puppeteer = require('puppeteer');
       waitUntil: 'networkidle0'
     });
 
-    const selector = '.application';
+    const selector = '.dshDashboardViewport';
     const rect = await page.evaluate(selector => {
  	             const element = document.querySelector(selector);
 	             if (!element)
