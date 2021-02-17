@@ -2,15 +2,21 @@ process = require('process')
 fs = require('fs')
 
 if (process.argv.length < 3 || process.argv.length > 5) {
-	    console.log('Usage: getscreenshot.js  url filename');
+	    console.log('Usage: getscreenshot.js  url filename proxy');
 	    process.exit(1);
 }
 
 var url = process.argv[2];
 var output = process.argv[3] + '.png';
 var resultoutput =  output + '.json';
-var type = process.argv[4];
 
+var chrome_args = [ '--no-sandbox' ]
+
+if (process.argv.length > 4) {
+  chrome_args.push('--proxy-server=' + process.argv[4])
+}
+
+const { exit } = require('process');
 //console.log(url)
 
 const puppeteer = require('puppeteer');
@@ -19,7 +25,7 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({
 	  ignoreHTTPSErrors: true,
 	  userDataDir: './cache',
-	  args: ['--proxy-server=proxy.hq.aws.scluk.com:3128', '--no-sandbox']
+	  args: chrome_args
   });
   const page = await browser.newPage();
 
@@ -48,4 +54,5 @@ const puppeteer = require('puppeteer');
   }
   fs.writeFile(resultoutput, JSON.stringify(result), function(err) {});
   await browser.close();
+  if (result.error) exit(1);
 })();

@@ -2,14 +2,19 @@ process = require('process')
 fs = require('fs')
 
 if (process.argv.length < 3 || process.argv.length > 5) {
-	    console.log('Usage: getkibana.js  url filename');
+	    console.log('Usage: getkibana.js  url filename proxy');
 	    process.exit(1);
 }
 
 var url = process.argv[2];
 var output = process.argv[3] + '.png';
 var resultoutput =  output + '.json';
-var type = process.argv[4];
+
+var chrome_args = [ '--no-sandbox' ]
+
+if (process.argv.length > 4) {
+  chrome_args.push('--proxy-server=' + process.argv[4])
+}
 
 //console.log(url)
 
@@ -19,13 +24,13 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({
 	  ignoreHTTPSErrors: true,
 	  userDataDir: './cache',
-	  args: ['--proxy-server=proxy.hq.aws.scluk.com:3128', '--no-sandbox']
+	  args: chrome_args
   });
   const page = await browser.newPage();
 
   // set viewport
   //await page.setViewport({width: 1920, height: 1080});
-  await page.setViewport({width: 1920, height: 1180});
+  await page.setViewport({width: 1920, height: 1080});
 
   const ts = Date.now();
   let result = {
@@ -72,4 +77,5 @@ const puppeteer = require('puppeteer');
   }
   fs.writeFile(resultoutput, JSON.stringify(result), function(err) {});
   await browser.close();
+  if (result.error) exit(1);
 })();

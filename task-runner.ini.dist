@@ -1,0 +1,4 @@
+[redis]
+host = redis.hq.aws.scluk.com
+config_key = stvproxy:config
+

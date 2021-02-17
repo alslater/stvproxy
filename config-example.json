@@ -1,0 +1,143 @@
+{
+	"global_vars": {
+		"webfolder": "/tmp",
+		"proxy": "proxy.hq.aws.scluk.com:3128"
+	},
+	"jobtypes": {
+		"logging-kibana": {
+			"vars": {
+				"template": "snapshot.template.htm"
+			},
+			"tasks": [
+				{
+					"name": "Run render job",
+					"command": "node scripts/getkibana.js https://search-livelogging-7g54mckm7rbuzdmmbcvidgc2x4.eu-west-2.es.amazonaws.com/_plugin/kibana/goto/${id}?embed=true ${webfolder}/${file} ${proxy}"
+				},
+				{
+					"name": "Update template",
+					"shell" : "if [ ${template} -nt ${webfolder}/${file}.htm ]; then sed 's/__FILENAME__/${file}/;s/__TITLE__/${title}/' snapshot.template.htm > ${webfolder}/${file}.htm; fi"
+				}
+			]
+		},
+		"screenshot": {
+			"vars": {
+				"template": "snapshot.template.htm"
+			},
+			"tasks": [
+				{
+					"name": "Run render job",
+					"command": "node scripts/getscreenshot.js ${url} ${webfolder}/${file} ${proxy}"
+				},
+				{
+					"name": "Update template",
+					"shell" : "if [ ${template} -nt ${webfolder}/${file}.htm ]; then sed 's/__FILENAME__/${file}/;s/__TITLE__/${title}/' snapshot.template.htm > ${webfolder}/${file}.htm; fi"
+				}
+			]
+		},
+		"prtgmap": {
+			"vars": {
+				"template": "snapshot.template.htm"
+			},
+			"tasks": [
+				{
+					"name": "Run render job",
+					"command": "node scripts/getscreenshot.js https://monitor.scluk.com/public/mapshow.htm?id=${id}&mapid=${mapid} ${webfolder}/${file}"		   
+				},
+				{
+					"name": "Update template",
+					"shell" : "if [ ${template} -nt ${webfolder}/${file}.htm ]; then sed 's/__FILENAME__/${file}/;s/__TITLE__/${title}/' snapshot.template.htm > ${webfolder}/${file}.htm; fi"
+				}
+			]
+		},
+		"getmaps": {
+			"tasks": [
+				{
+					"name": "Check google maps api",
+					"command": "node scripts/getmaps.js http://10.130.7.13/mapscheck.htm /var/www/html/mapscheck.xml"
+				}
+			]
+		}
+	},
+	"jobs": [
+		{
+			"enabled": true,
+			"name": "Kibana STV Summary",
+			"jobtype": "logging-kibana",
+			"params": {
+				"file": "dashboard1",
+				"id": "9d13ef97dbc3b8478000ce1af192037e"
+			}
+		},
+		{
+			"enabled": true,
+			"name": "Kibana STV Dash #1",
+			"jobtype": "logging-kibana",
+			"params": {
+				"file": "dashboard2",
+				"id": "36c31309c645debd544f6c33589831ce"
+			}
+		},
+		{
+			"enabled": true,
+			"name": "Kibana STV Dash #2",
+			"jobtype": "logging-kibana",
+			"params": {
+				"file": "dashboard3",
+				"id": "73252eb99409abb2554528b8d980ed6d"
+			}
+		},
+		{
+			"enabled": true,
+			"name": "Kibana STV Dash #3",
+			"jobtype": "logging-kibana",
+			"params": {
+				"file": "dashboard4",
+				"id": "2605490b96415149d994a8f90d744016"
+			}
+		},
+		{
+			"enabled": true,
+			"name": "Logzio Example #1",
+			"jobtype": "screenshot",
+			"params": {
+				"file": "dashboard8",
+				"url" : "https://app-eu.logz.io/?shareToken=fbdf6de7-8ee1-40cf-b5ad-a05f61e78f82&theme=dark#/dashboard/kibana/dashboard/f7a3f090-d8c6-11e7-9cd5-93cc52a210ae?_a=(description%3A''%2Cfilters%3A!()%2CfullScreenMode%3A!f%2Coptions%3A(darkTheme%3A!f%2CuseMargins%3A!f)%2Cpanels%3A!((embeddableConfig%3A(vis%3A(defaultColors%3A('0%20-%20100'%3A'rgb(0%2C104%2C55)')))%2CgridData%3A(h%3A15%2Ci%3A'1'%2Cw%3A16%2Cx%3A8%2Cy%3A0)%2Cid%3A'7f1a30b0-d8e6-11e7-a081-151b9581dc68'%2CpanelIndex%3A'1'%2Ctype%3Avisualization%2Cversion%3A'7.6.1')%2C(embeddableConfig%3A()%2CgridData%3A(h%3A15%2Ci%3A'2'%2Cw%3A12%2Cx%3A24%2Cy%3A0)%2Cid%3A'6998aaa0-d8e6-11e7-a081-151b9581dc68'%2CpanelIndex%3A'2'%2Ctype%3Avisualization%2Cversion%3A'7.6.1')%2C(embeddableConfig%3A(vis%3A(defaultColors%3A('0%20-%20100'%3A'rgb(0%2C104%2C55)')))%2CgridData%3A(h%3A15%2Ci%3A'3'%2Cw%3A24%2Cx%3A0%2Cy%3A15)%2Cid%3A'39ba9170-d8e8-11e7-a081-151b9581dc68'%2CpanelIndex%3A'3'%2Ctype%3Avisualization%2Cversion%3A'7.6.1')%2C(embeddableConfig%3A()%2CgridData%3A(h%3A15%2Ci%3A'4'%2Cw%3A24%2Cx%3A24%2Cy%3A15)%2Cid%3A'6882e2f0-d8e8-11e7-a081-151b9581dc68'%2CpanelIndex%3A'4'%2Ctype%3Avisualization%2Cversion%3A'7.6.1')%2C(embeddableConfig%3A()%2CgridData%3A(h%3A15%2Ci%3A'5'%2Cw%3A12%2Cx%3A36%2Cy%3A0)%2Cid%3A'3618e430-d8e9-11e7-8bbe-b9dfb0b94780'%2CpanelIndex%3A'5'%2Ctype%3Avisualization%2Cversion%3A'7.6.1')%2C(embeddableConfig%3A()%2CgridData%3A(h%3A15%2Ci%3A'6'%2Cw%3A12%2Cx%3A36%2Cy%3A30)%2Cid%3Aaacab380-d8e9-11e7-8bbe-b9dfb0b94780%2CpanelIndex%3A'6'%2Ctype%3Avisualization%2Cversion%3A'7.6.1')%2C(embeddableConfig%3A(vis%3A(params%3A(sort%3A(columnIndex%3A!n%2Cdirection%3A!n))))%2CgridData%3A(h%3A15%2Ci%3A'7'%2Cw%3A24%2Cx%3A0%2Cy%3A30)%2Cid%3Ae1cec1e0-d8ea-11e7-8bbe-b9dfb0b94780%2CpanelIndex%3A'7'%2Ctype%3Avisualization%2Cversion%3A'7.6.1')%2C(embeddableConfig%3A(vis%3A(legendOpen%3A!t))%2CgridData%3A(h%3A15%2Ci%3A'8'%2Cw%3A12%2Cx%3A24%2Cy%3A30)%2Cid%3A'70bf0da0-d8ec-11e7-8bbe-b9dfb0b94780'%2CpanelIndex%3A'8'%2Ctype%3Avisualization%2Cversion%3A'7.6.1')%2C(embeddableConfig%3A()%2CgridData%3A(h%3A12%2Ci%3A'9'%2Cw%3A8%2Cx%3A0%2Cy%3A0)%2Cid%3Aab63dab0-d8f3-11e7-8bbe-b9dfb0b94780%2CpanelIndex%3A'9'%2Ctype%3Avisualization%2Cversion%3A'7.6.1'))%2Cquery%3A(language%3Alucene%2Cquery%3A'')%2CtimeRestore%3A!f%2Ctitle%3A'AWS%20Lambda%20Invoke%20API%20Monitoring%20Dashboard'%2CviewMode%3Aview)&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))&embed=true"
+			}
+		},
+		{
+			"enabled": true,
+			"name": "PRTG Summary",
+			"jobtype": "prtgmap",
+			"params": {
+				"file": "dashboard5",
+				"id": "9619",
+				"mapid": "48DD234E-DBBC-4B12-90C2-4F4572935A52"
+			}
+		},
+		{
+			"enabled": true,
+			"name": "PRTG Web Load",
+			"jobtype": "prtgmap",
+			"params": {
+				"file": "dashboard6",
+				"id": "9620",
+				"mapid": "EF4EE673-F3C8-4E3D-A487-84D68880DDA4"
+			}
+		},
+		{
+			"enabled": true,
+			"name": "PRTG Web Apache Status",
+			"jobtype": "prtgmap",
+			"params": {
+				"file": "dashboard7",
+				"id": "9621",
+				"mapid": "6BDDB5FD-7D0A-4802-BF95-6AB65F9678B5"
+			}
+		},
+		{
+			"enabled": true,
+			"name": "Google Maps check",
+			"jobtype": "getmaps"
+		}
+	]
+}
